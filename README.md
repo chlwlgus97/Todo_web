@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+## 1. 자신이 개발한 앱에 대한 설명
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 React를 기반으로 한 Todo List 웹 애플리케이션입니다.
+사용자는 간단한 UI를 통해 할 일을 추가, 조회, 수정, 삭제할 수 있으며, 각 할 일은 완료 여부(done: 0 - 미완료, 1 - 완료)로 관리됩니다.
+프론트엔드에서는 React를 활용하여 컴포넌트 기반의 모듈화된 UI를 구현하였으며, Axios를 이용해 API 호출을 통해 백엔드(Spring Boot v3)와 데이터를 주고받습니다.
+이 프로젝트는 사용자에게 직관적인 할 일 관리 환경을 제공하는 목적으로 개발하였습니다.
 
-## Available Scripts
+## 2. 소스 빌드 및 실행 방법 메뉴얼
 
-In the project directory, you can run:
+- 개발 툴 버전 정보
+  - Node.js 20
+  - react V19
+- 소스 빌드
+  - git colne <repository_url>
+- 실행 방법
+  - npm start
+- 의존성 설치
+  - npm install axios
 
-### `npm start`
+## 3. 주요 컴포넌트 및 사용 이유
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- TodoList 컴포넌트
+  - 내용:
+    전체 할 일 목록을 관리하는 최상위 컴포넌트입니다.
+    백엔드 API(fetchTodos, createTodo, modifyTodo, removeTodo)를 호출하여 데이터의 CRUD 작업을 수행합니다.
+    사용자로부터 새로운 할 일을 입력받고, 리스트를 업데이트하여 최신 상태를 화면에 반영합니다.
+    사용 이유:
+    전체 애플리케이션의 상태를 중앙에서 관리함으로써, 데이터의 흐름과 업데이트를 일관되게 처리할 수 있습니다.
+- TodoItem 컴포넌트
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  - 내용:
+    개별 할 일 항목을 렌더링하며, 제목 수정, 삭제, 완료 여부(체크박스)를 제어합니다.
+    수정 모드와 일반 모드를 전환하며, 완료 시에는 텍스트에 취소선(line-through)을 적용합니다.
+    사용 이유:
+    개별 할 일의 UI와 기능을 분리하여 모듈화함으로써, 코드의 재사용성과 유지보수성을 높였습니다.
+    각 할 일 항목에 대한 독립적인 이벤트 처리가 가능하여, 사용자 인터랙션이 보다 직관적입니다.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- API 호출 로직은 별도의 모듈로 분리하여 관리에 용이하게끔 처리했습니다.
